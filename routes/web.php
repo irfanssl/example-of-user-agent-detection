@@ -19,4 +19,11 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+    Route::get('/user/log', [App\Http\Controllers\UserLogController::class, 'index']);
+    Route::get('/user/email/{email}', [App\Http\Controllers\UserLogController::class, 'get_user_agent']);
+
+    Route::post('/submit-user-agent', [App\Http\Controllers\UserLogController::class, 'save']);
+});

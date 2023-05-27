@@ -15,6 +15,10 @@
 
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+
+    @if(isset($page) && $page == 'home')
+        @vite(['resources/js/submit-user-agent.js'])
+    @endif
 </head>
 <body>
     <div id="app">

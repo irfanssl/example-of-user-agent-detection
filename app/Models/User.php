@@ -41,4 +41,15 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+
+    public function user_agent()
+    {
+        return $this->hasMany(UserAgent::class);
+    }
+
+    public function last_user_agent()
+    {
+        return $this->hasMany(UserAgent::class)->orderBy('id','desc')->limit(1);
+    }
 }
